@@ -1,5 +1,23 @@
-import '@/styles/globals.css'
+import '../styles/globals.css'
+import { SessionProvider } from "next-auth/react";
+import TimeAgo from 'javascript-time-ago'
 
-export default function App({ Component, pageProps }) {
-  return <Component {...pageProps} />
+import en from 'javascript-time-ago/locale/en.json'
+import ru from 'javascript-time-ago/locale/ru.json'
+
+TimeAgo.addDefaultLocale(en)
+TimeAgo.addLocale(ru)
+
+
+function MyApp({
+   Component,
+   pageProps: { session, ...pageProps },
+}) {
+  return (
+    <SessionProvider session={session}>
+      <Component {...pageProps} />
+    </SessionProvider>
+  );
 }
+
+export default MyApp
