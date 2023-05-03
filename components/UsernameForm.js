@@ -14,7 +14,7 @@ export default function UsernameForm() {
     }
     if (username === '') {
       const defaultUsername = userInfo?.email?.split('@')[0];
-      setUsername(defaultUsername.replace(/[^a-z]+/gi,''));
+      setUsername(defaultUsername(/[^a-z]+/gi,''));
     }
   }, [status])
 
